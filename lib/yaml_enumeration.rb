@@ -1,5 +1,4 @@
 require "yaml_enumeration/version"
-
-module YamlEnumeration
-  # Your code goes here...
-end
+require "yaml_enumeration/association"
+require "yaml_enumeration/enumeration"
+require "yaml_enumeration/railtie"
