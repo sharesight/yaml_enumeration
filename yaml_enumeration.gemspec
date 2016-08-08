@@ -10,7 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["boettger@mt7.de"]
 
   spec.summary       = %q{Create ActiveRecord enumerations based on YAML files.}
-  spec.description   = %q{Create ActiveRecord enumerations based on YAML files.}
+  spec.description   = %q{Create classes which work like ActiveRecord classes,
+                          but are defined as fixed enumerations based on YAML files.}
   spec.homepage      = "https://github.com/alto/yaml_enumeration"
   spec.license       = "MIT"
 
