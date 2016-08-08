@@ -1,5 +1,8 @@
 # Yaml Enumeration
 
+[![Gem Version](https://badge.fury.io/rb/yaml_enumeration.svg)](http://badge.fury.io/rb/yaml_enumeration)
+[![Build Status](https://travis-ci.org/alto/yaml_enumeration.svg?branch=master)](https://travis-ci.org/alto/yaml_enumeration)
+
 Create classes which work like
 [ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html)
 classes, but are defined as fixed enumerations based on
