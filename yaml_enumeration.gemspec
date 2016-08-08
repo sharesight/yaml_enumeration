@@ -21,9 +21,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "minitest"
+  spec.add_development_dependency "maxitest", '~> 1'
   spec.add_development_dependency "shoulda-context"
 
-  spec.add_dependency "activesupport"
-  spec.add_dependency "railties"
+  spec.add_dependency "activesupport", '~> 4'
+  spec.add_dependency "railties", '~> 4'
 end
