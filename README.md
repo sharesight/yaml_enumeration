@@ -1,6 +1,6 @@
 # Yaml Enumeration
 
-Create classes which works like
+Create classes which work like
 [ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html)
 classes, but are defined as fixed enumerations based on
 [YAML](http://yaml.org)
@@ -50,14 +50,14 @@ class Country < YamlEnumeration::Enumeration
 end
 ```
 
-a `yaml` files containing all your countries:
+a `yaml` file containing all your countries:
 
 ```yaml
-# countries.yaml
+# countries.yml
 ---
 nz:
-  id: 1
-  type: new_zealand
+  id: 1 # has to be provided
+  type: new_zealand # has to be provided
   name: New Zealand
   code: nz
 au:
