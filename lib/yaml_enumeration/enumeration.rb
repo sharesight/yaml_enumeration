@@ -73,6 +73,7 @@ module YamlEnumeration
 
     class << self
       def all
+        return [] unless values
         # values.keys.map {|id| new(id)} # override this if you do not want to keep associated obj loaded against
         self.all_instances ||= values.keys.map {|id| new(id)}
       end
@@ -89,8 +90,29 @@ module YamlEnumeration
       end
       alias_method :find_by_id, :find
 
+      def find_by(column, value)
+        all.find {|item| item.send(column) == value }
+      end
+
       def find_by_type(type)
         all.detect {|a| a.type == type.to_s}
+      end
+
+      def where(matches)
+        raise "Only the hash form of where is supported, not #{matches}" unless matches.is_a?(Hash)
+
+        all.select do |item|
+          matches.all? {|k,v| item.send(k) == v }
+        end
+      end
+
+      # Define singleton methods .BLAH for each type
+      def with_named_items(column = :type)
+        all.each do |item|
+          define_singleton_method "#{item.send(column).upcase}" do
+            find_by(column, item.send(column).downcase)
+          end
+        end
       end
 
       protected :new

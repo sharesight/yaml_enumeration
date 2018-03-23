@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/yaml_enumeration.svg)](http://badge.fury.io/rb/yaml_enumeration)
 [![Build Status](https://travis-ci.org/alto/yaml_enumeration.svg?branch=master)](https://travis-ci.org/alto/yaml_enumeration)
 
-Create classes which work like
+Create classes which work (a bit) like
 [ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html)
 classes, but are defined as fixed enumerations based on
 [YAML](http://yaml.org)
@@ -46,9 +46,9 @@ class Country < YamlEnumeration::Enumeration
   # imports the definitions from the yaml file countries.yml
   load_values :countries
 
-  # all and find_by_type are provided
+  # all, where, find_by and find_by_type are provided
   def self.find_by_code(code)
-    all.detect {|m| m.code == code} || all.detect {|m| m.old_code == code}
+    all.find_by(code: code)
   end
 end
 ```
@@ -79,6 +79,16 @@ class User < ActiveRecord::Base
   belongs_to_enumeration :country
 end
 ```
+
+## Accessing members
+
+If you include a call to class method `with_named_items` you will get an item defined for each typed entry in the enumeration, e.g. `Country.NEW_ZEALAND` and `Country.AUSTRALIA`.
+
+By passing a column name, e.g:
+```
+with_named_items(:code)
+```
+that column will be used, e.g: `Country.AU` and `Country.NZ` 
 
 ## Development
 

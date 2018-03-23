@@ -3,6 +3,8 @@ require 'test_helper'
 class YamlEnumeration::EnumerationTest < Minitest::Test
 
   class EnumerationExample < YamlEnumeration::Enumeration
+    with_named_items
+
     value :id => 1, :type => 'first',  :name => 'First',  :flagged => true
     value :id => 2, :type => 'second', :name => 'Second', :flagged => false
     value :id => 5, :type => 'third',  :name => 'Third'
@@ -55,6 +57,14 @@ class YamlEnumeration::EnumerationTest < Minitest::Test
       third = EnumerationExample.find(5)
       assert_nil third.flagged
       assert_equal false, third.flagged?
+    end
+  end
+
+  context 'named items' do
+    should 'access their corresponding records' do
+      assert_equal 'First', EnumerationExample.FIRST.name
+      assert_equal 'Second', EnumerationExample.SECOND.name
+      assert_equal 'Third', EnumerationExample.THIRD.name
     end
   end
 
