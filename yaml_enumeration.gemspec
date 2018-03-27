@@ -25,6 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "maxitest", '~> 1'
   spec.add_development_dependency "shoulda-context"
 
-  spec.add_dependency "activesupport", '~> 4'
-  spec.add_dependency "railties", '~> 4'
+  spec.add_dependency "activesupport", '>= 4'
+  spec.add_dependency "railties", '>= 4'
 end

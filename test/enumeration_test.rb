@@ -6,6 +6,8 @@ class YamlEnumeration::EnumerationTest < Minitest::Test
     value :id => 1, :type => 'first',  :name => 'First',  :flagged => true
     value :id => 2, :type => 'second', :name => 'Second', :flagged => false
     value :id => 5, :type => 'third',  :name => 'Third'
+
+    with_named_items
   end
 
   context "all enumerations" do
@@ -58,6 +60,14 @@ class YamlEnumeration::EnumerationTest < Minitest::Test
     end
   end
 
+  context 'named items' do
+    should 'access their corresponding records' do
+      assert_equal 'First', EnumerationExample.FIRST.name
+      assert_equal 'Second', EnumerationExample.SECOND.name
+      assert_equal 'Third', EnumerationExample.THIRD.name
+    end
+  end
+
   context "comparison" do
     should 'work' do
       enum = EnumerationExample.find(1)
@@ -66,4 +76,27 @@ class YamlEnumeration::EnumerationTest < Minitest::Test
     end
   end
 
+  context 'find_by' do
+    should 'find a single item by a field' do
+      assert_equal EnumerationExample.find(2), EnumerationExample.find_by(:type, 'second')
+    end
+
+    should 'find a single item by a case insensitive field' do
+      assert_equal EnumerationExample.find(3), EnumerationExample.find_by(:name, 'third')
+    end
+
+    should 'return nil for no match' do
+      assert_nil EnumerationExample.find_by(:name, 'meh')
+    end
+  end
+
+  context 'where' do
+    should 'find a single item by a field' do
+      assert_equal [ EnumerationExample.find(2) ], EnumerationExample.where(type: 'second')
+    end
+
+    should 'return empty array for no match' do
+      assert_empty EnumerationExample.where(name: 'meh')
+    end
+  end
 end
