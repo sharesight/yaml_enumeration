@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.1
+
+* Update for Ruby 2.6.3 compatibility.
+
 ## 0.2.0
 
  * support _ActiveRecord_ methods `where`, `find_by` [#1])(https://github.com/alto/yaml_enumeration/pull/1), thanks to [@richdrich](https://github.com/richdrich)
